@@ -35,13 +35,14 @@ class OpenCommercial {
 	content = connection.getContent();
 	
 	Reader page_reader;
-	rreader = new Reader(content);
+	page_reader = new Reader(content);
 	
-	i Integer;
+	Integer i;
 	i = 0;
-	c, acc String;
+	String c;
+	String[] acc;
 	while i<5 {
-	    while ((c = read()) != "\n") {
+	    while ((c = page_reader.read()) != "\n") {
 	    	acc.append(c);
 	    }
 	    System.out.print(acc);
