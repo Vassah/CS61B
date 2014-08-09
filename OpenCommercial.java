@@ -28,14 +28,14 @@ class OpenCommercial {
 	inputLine = keyboard.readLine();
 
 	/* Replace this comment with your solution.  */
-	connection HttpURLConnection;
+	HttpURLConnection connection;
 	connection = new HttpURLConnection("http://www." + inputLine + ".com");
 	
-	content String;
+	String content;
 	content = connection.getContent();
 	
-	reader Reader;
-	reader = new Reader(content);
+	Reader page_reader;
+	rreader = new Reader(content);
 	
 	i Integer;
 	i = 0;
