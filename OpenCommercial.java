@@ -43,10 +43,10 @@ class OpenCommercial {
 	while i<5 {
 	    while ((c = read()) != "\n") {
 	    	acc.append(c);
-	        }
+	    }
 	    System.out.print(acc);
 	    i++;
-	    }
+	}
 
     }
 }
