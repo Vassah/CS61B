@@ -28,6 +28,25 @@ class OpenCommercial {
 	inputLine = keyboard.readLine();
 
 	/* Replace this comment with your solution.  */
+	connection HttpURLConnection;
+	connection = new HttpURLConnection("http://www." + inputLine + ".com");
+	
+	content String;
+	content = connection.getContent();
+	
+	reader Reader;
+	reader = new Reader(content);
+	
+	i Integer;
+	i = 0;
+	c, acc String;
+	while i<5 {
+	    while ((c = read()) != "\n") {
+	    	acc.append(c);
+	        }
+	    System.out.print(acc);
+	    i++;
+	    }
 
     }
 }
