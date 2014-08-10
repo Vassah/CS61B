@@ -28,26 +28,26 @@ class OpenCommercial {
 	inputLine = keyboard.readLine();
 
 	/* Replace this comment with your solution.  */
+
+	URL url;
+	url = new URL("http://www." + inputLine + ".com");
+	
 	HttpURLConnection connection;
-	connection = new HttpURLConnection("http://www." + inputLine + ".com");
-	
-	String content;
-	content = connection.getContent();
-	
-	Reader page_reader;
-	page_reader = new Reader(content);
+	connection = (HttpURLConnection) url.openConnection();
+
+	BufferedReader page_reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 	
 	Integer i;
 	i = 0;
 	String c;
-	String[] acc;
-	while i<5 {
-	    while ((c = page_reader.read()) != "\n") {
-	    	acc.append(c);
-	    }
-	    System.out.print(acc);
+	String[] acc = new String[5];
+	while (i < 5) {
+	    c = page_reader.readLine();
+	    acc[4 - i] = c;
 	    i++;
 	}
-
+	for (String s : acc) {
+	    System.out.print(s + "\n");
+	}
     }
 }
