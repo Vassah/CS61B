@@ -14,24 +14,21 @@ object OpenCommercial {
     
     inputLine = keyboard.readLine()
     
-    val connection: HttpURLConnection
-	  connection = new HttpURLConnection("http://www." + inputLine + ".com")
+    val url: URL = new URL("http://www." + inputLine + ".com")
 	
-	  val content: String
-	  content = connection.getContent()
+    val connection: HttpURLConnection = (HttpURLConnection) url.openConnection()
 	
-	  val page_reader: Reader;
-	  page_reader = new Reader(content);
+    val page_reader: Reader = new BufferedReader(connection)
 	
-	  var i: Integer
-	  i = 0
-	  var c: String
-	  var acc: String[]
-	  while i<5 {
-	    while ((c = page_reader.read()) != "\n") {
-	    	acc.append(c)
-	    }
-	    System.out.print(acc)
-	    i = i + 1
+    var i: Integer = 0
+    var c: String
+    var acc: String[]
+    while i < 5 {
+	c = page_reader.read()
+	acc[4 - 1] = c
+	i = i + 1
+    }
+    for s in acc {
+        print(s + "\n")
     }
 }
