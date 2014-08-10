@@ -2,7 +2,7 @@ import java.net.*
 import java.io.*
 
 object OpenCommercial {
-  def main(arg: String) {
+  def main(arg: String) = {
     
     val keyboard: BufferedReader
     val inputLine: String
@@ -22,13 +22,13 @@ object OpenCommercial {
 	
     var i: Integer = 0
     var c: String
-    var acc: String[]
-    while i < 5 {
+    var acc: Array[String] = new Array(5)
+    while (i < 5) {
 	c = page_reader.read()
 	acc[4 - 1] = c
 	i = i + 1
     }
-    for s in acc {
+    for (s <- acc) {
         print(s + "\n")
     }
 }
