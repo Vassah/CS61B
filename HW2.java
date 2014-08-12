@@ -62,7 +62,7 @@ class Date {
    *  Years prior to A.D. 1 are NOT valid.
    */
   public static boolean isValidDate(int month, int day, int year) {
-    if(day <= daysInMonth(month) && year > 1) {
+    if(day <= daysInMonth(month, year) && year > 1) {
       return true;
     }
     else {
