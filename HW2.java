@@ -31,10 +31,10 @@ class Date {
    *  @return true if and only if the input year is a leap year.
    */
   public static boolean isLeapYear(int year) {
-    if (year % 400 != 0) {
+    if (year % 400 == 0) {
       return true;
     }
-    else if (year % 4 != 0 && year 100 != 0) {
+    else if (year % 4 == 0 && year 100 != 0) {
       return true;
     }
     else {
