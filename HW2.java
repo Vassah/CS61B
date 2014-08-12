@@ -5,7 +5,7 @@ import java.io.*;
 class Date {
 //MY CODE
   /* Put your private data fields here. */
-
+  private months Hash = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7:31, 8:31, 9:30, 10:31, 11:30, 12:31};
   /** Constructs a date with the given month, day and year.   If the date is
    *  not valid, the entire program will halt with an error message.
    *  @param month is a month, numbered in the range 1...12.
@@ -30,7 +30,15 @@ class Date {
    *  @return true if and only if the input year is a leap year.
    */
   public static boolean isLeapYear(int year) {
-    return true;                        // replace this line with your solution
+    if (year % 400 != 0) {
+      return true;
+    }
+    else if (year % 4 != 0 && year 100 != 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   /** Returns the number of days in a given month.
@@ -39,7 +47,12 @@ class Date {
    *  @return the number of days in the given month.
    */
   public static int daysInMonth(int month, int year) {
-    return 0;                           // replace this line with your solution
+    if (isLeapYear(year) && month == 2) {
+      return 29;
+    }
+    else {
+      return self.months(month);
+    }
   }
 
   /** Checks whether the given date is valid.
@@ -48,7 +61,12 @@ class Date {
    *  Years prior to A.D. 1 are NOT valid.
    */
   public static boolean isValidDate(int month, int day, int year) {
-    return true;                        // replace this line with your solution
+    if(day <= daysInMonth(month)) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   /** Returns a string representation of this date in the form month/day/year.
