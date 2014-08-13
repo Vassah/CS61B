@@ -17,3 +17,29 @@ class Date {
     return if (day < daysInMonth(month, year) && year > 1) {true} else {false}
   }
 }
+
+
+class DateTest {
+  def main() {
+    println(Date.isLeapYear(1600))
+    //Should be true
+    println(Date.isLeapYear(1100))
+    //Should be false
+    for (i <- 1 to 12) {
+      println(Date.daysInMonth(i, 1100))
+    }
+    //Should be the days of each month, 28 for february.
+    for (i <- 1 to 12) {
+      println(Date.daysInMonth(i, 1600))
+    }
+    //Should be the days of each month, 29 for february
+    println(Date.isValidDate(16, 8, 2014))
+    //Should be true
+    println(Date.isValidDate(16, 8, 0))
+    //Should be false
+    println(Date.isValidDate(29, 2, 1100))
+    //Should be false
+    println(Date.isValidDate(29, 2, 1600))
+    //Should be true
+  }
+}
