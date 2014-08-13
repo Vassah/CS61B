@@ -5,7 +5,19 @@ import java.io.*;
 class Date {
 //MY CODE
   /* Put your private data fields here. */
-  private months_to_days Hash = new Map(1= 31, 2= 28, 3= 31, 4= 30, 5= 31, 6= 30, 7=31, 8=31, 9=30, 10=31, 11=30, 12=31);
+  private months_to_days Map<Integer, Integer> = new Map();
+  months_to_days.put(1, 31);
+    months_to_days.put(2, 28);
+    months_to_days.put(3, 31); 
+    months_to_days.put(4, 30); 
+    months_to_days.put(5, 31); 
+    months_to_days.put(6, 30);
+    months_to_days.put(7, 31);
+    months_to_days.put(8, 31);
+    months_to_days.put(9, 30);
+    months_to_days.put(10,31);
+    months_to_days.put(11,30);
+    months_to_days.put(12,31);
   private months_to_numb Hash = new Map("January"= 1, "February"=2, "March"=3, "April"=4,"May"=5,"June"=6,"July"=7,"August"=8,"September"=9,"October"=10,"November"=11,"December"=12);
   /** Constructs a date with the given month, day and year.   If the date is
    *  not valid, the entire program will halt with an error message.
