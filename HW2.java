@@ -5,20 +5,33 @@ import java.io.*;
 class Date {
 //MY CODE
   /* Put your private data fields here. */
-  private months_to_days Map<Integer, Integer> = new Map();
-  months_to_days.put(1, 31);
-    months_to_days.put(2, 28);
-    months_to_days.put(3, 31); 
-    months_to_days.put(4, 30); 
-    months_to_days.put(5, 31); 
-    months_to_days.put(6, 30);
-    months_to_days.put(7, 31);
-    months_to_days.put(8, 31);
-    months_to_days.put(9, 30);
-    months_to_days.put(10,31);
-    months_to_days.put(11,30);
-    months_to_days.put(12,31);
-  private months_to_numb Hash = new Map("January"= 1, "February"=2, "March"=3, "April"=4,"May"=5,"June"=6,"July"=7,"August"=8,"September"=9,"October"=10,"November"=11,"December"=12);
+  private months_to_days ArrayList = new ArrayList();
+    months_to_days.add(31);
+    months_to_days.add(28);
+    months_to_days.add(31); 
+    months_to_days.add(30); 
+    months_to_days.add(31); 
+    months_to_days.add(30);
+    months_to_days.add(31);
+    months_to_days.add(31);
+    months_to_days.add(30);
+    months_to_days.add(31);
+    months_to_days.add(30);
+    months_to_days.add(31);
+  //This is the ugliest possible way to build an ArrayList and a Map I'm sure but I just want the damn things to work.
+  private months_to_numb Map<String, Integer> = new Map();
+    months_to_numb.put("January", 0);
+    months_to_numb.put("February", 1);
+    months_to_numb.put("March", 2);
+    months_to_numb.put("April", 3);
+    months_to_numb.put("May", 4);
+    months_to_numb.put("June", 5);
+    months_to_numb.put("July", 6);
+    months_to_numb.put("August", 7);
+    months_to_numb.put("September", 8);
+    months_to_numb.put("October", 9);
+    months_to_numb.put("November", 10);
+    months_to_numb.put("December", 11);
   /** Constructs a date with the given month, day and year.   If the date is
    *  not valid, the entire program will halt with an error message.
    *  @param month is a month, numbered in the range 1...12.
@@ -26,7 +39,12 @@ class Date {
    *  @param year is the year in question, with no digits omitted.
    */
   public Date(int month, int day, int year) {
-
+    if (not Date.isValidDate(month, day, year)) {
+      System.out.print("That's not a real date?");
+      System.exit(0);
+    self.month = month;
+    self.day = day;
+    self.year = year;
   }
 
   /** Constructs a Date object corresponding to the given string.
@@ -36,8 +54,28 @@ class Date {
    *  a valid date, the program halts with an error message.
    */
   public Date(String s) {
-
+    temporus ArrayList;
+    temporus = ArrayList(String.split("/"))
+    if (length(temporus.get(2)) > 4) {
+      System.out.print("Dude that's not a year we've made it to yet");
+      System.exit(0);
+    }
+    try {
+      temporus.set(0, Integer(temporus.get(0));
+      temporus.set(1, Integer(temporus.get(1));
+      temporus.set(2, Integer(temporus.get(2));
+      if (not Date.isValidDate(temporus.get(0), temporus.get(1), temporus.get(2))) {
+        System.out.print("That's not a real date?");
+        System.exit(0)
+      }
+      else {
+        return Date(temporus.get(0), temporus.get(1), temporus.get(2));
+      }
+    } catch {
+      System.out.print("Bad literals man.");
+      System.exit(0);
   }
+}
 
   /** Checks whether the given year is a leap year.
    *  @return true if and only if the input year is a leap year.
@@ -64,7 +102,7 @@ class Date {
       return 29;
     }
     else {
-      return self.months(month);
+      return months_to_days.get(month - 1);
     }
   }
 
@@ -88,7 +126,7 @@ class Date {
    *  @return a String representation of this date.
    */
   public String toString() {
-    return "stuff";                     // replace this line with your solution
+    return this.month + "/" + this.day + "/" + this.year;                     // replace this line with your solution
   }
 
   /** Determines whether this Date is before the Date d.
