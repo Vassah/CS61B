@@ -5,15 +5,15 @@ class Date {
     
   }
   
-  def isLeapYear(year: Int): Boolean {
+  def isLeapYear(year: Int): Boolean ={
     return if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {true} else {false}
   }
   
-  def daysInMonth(month: Int, year: Int): Int {
+  def daysInMonth(month: Int, year: Int): Int ={
     return if (isLeapYear(year)) {29} else {months_to_days(month)}
   }
   
-  def isValidDate(day: Int, month: Int, year: Int) Boolean {
+  def isValidDate(day: Int, month: Int, year: Int): Boolean ={
     return if (day < daysInMonth(month, year) && year > 1) {true} else {false}
   }
 }

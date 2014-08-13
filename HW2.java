@@ -34,7 +34,7 @@ class Date {
     if (year % 400 == 0) {
       return true;
     }
-    else if (year % 4 == 0 && year 100 != 0) {
+    else if ((year % 4 == 0) && (year 100 != 0)) {
       return true;
     }
     else {
@@ -48,7 +48,7 @@ class Date {
    *  @return the number of days in the given month.
    */
   public static int daysInMonth(int month, int year) {
-    if (isLeapYear(year) && month == 2) {
+      if ((isLeapYear(year)) && (month == 2)) {
       return 29;
     }
     else {
@@ -62,7 +62,7 @@ class Date {
    *  Years prior to A.D. 1 are NOT valid.
    */
   public static boolean isValidDate(int month, int day, int year) {
-    if(day <= daysInMonth(month, year) && year > 1) {
+      if ((day <= daysInMonth(month, year)) && (year > 1)) {
       return true;
     }
     else {
