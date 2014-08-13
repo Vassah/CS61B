@@ -133,14 +133,26 @@ class Date {
    *  @return true if and only if this Date is before d. 
    */
   public boolean isBefore(Date d) {
-    return true;                        // replace this line with your solution
+    if (self.year < d.year){
+      return true;
+    } else if ((self.year == d.year) && (self.month < d.month)) {
+      return true;
+    } else if ((self.year == d.year) && (self.month == d.month) && (self.day < d.day)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /** Determines whether this Date is after the Date d.
    *  @return true if and only if this Date is after d. 
    */
   public boolean isAfter(Date d) {
-    return true;                        // replace this line with your solution
+    if (this.isBefore(d) || ((this.day == d.day)  && (this.month == d.month) && (this.year == d.year))) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   /** Returns the number of this Date in the year.
@@ -149,7 +161,11 @@ class Date {
    *  year.)
    */
   public int dayInYear() {
-    return 0;                           // replace this line with your solution
+    int acc = 0;
+    for (int i = 0; i < (this.month - 1); i++) {
+      acc = acc + month_to_days.get(i);
+    }
+    return (acc + this.days)
   }
 
   /** Determines the difference in days between d and this Date.  For example,
@@ -158,7 +174,7 @@ class Date {
    *  @return the difference in days between d and this date.
    */
   public int difference(Date d) {
-    return 0;                           // replace this line with your solution
+    return true;                           // replace this line with your solution
   }
 //END MY CODE
   public static void main(String[] argv) {
