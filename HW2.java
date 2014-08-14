@@ -1,37 +1,17 @@
 /* Date.java */
 
 import java.io.*;
+import java.util.*;
+
 
 class Date {
 //MY CODE
   /* Put your private data fields here. */
-  private months_to_days ArrayList = new ArrayList();
-    months_to_days.add(31);
-    months_to_days.add(28);
-    months_to_days.add(31); 
-    months_to_days.add(30); 
-    months_to_days.add(31); 
-    months_to_days.add(30);
-    months_to_days.add(31);
-    months_to_days.add(31);
-    months_to_days.add(30);
-    months_to_days.add(31);
-    months_to_days.add(30);
-    months_to_days.add(31);
-  //This is the ugliest possible way to build an ArrayList and a Map I'm sure but I just want the damn things to work.
-  private months_to_numb Map<String, Integer> = new Map();
-    months_to_numb.put("January", 0);
-    months_to_numb.put("February", 1);
-    months_to_numb.put("March", 2);
-    months_to_numb.put("April", 3);
-    months_to_numb.put("May", 4);
-    months_to_numb.put("June", 5);
-    months_to_numb.put("July", 6);
-    months_to_numb.put("August", 7);
-    months_to_numb.put("September", 8);
-    months_to_numb.put("October", 9);
-    months_to_numb.put("November", 10);
-    months_to_numb.put("December", 11);
+  private static List<Integer> month_to_days = Arrays.asList(31,28,31,30,31,30,31,31,30,31,30,31);
+  public Integer month;
+  public Integer day;
+  public Integer year;
+  //I hate Java.
   /** Constructs a date with the given month, day and year.   If the date is
    *  not valid, the entire program will halt with an error message.
    *  @param month is a month, numbered in the range 1...12.
@@ -39,12 +19,13 @@ class Date {
    *  @param year is the year in question, with no digits omitted.
    */
   public Date(int month, int day, int year) {
-    if (not Date.isValidDate(month, day, year)) {
+    if (!Date.isValidDate(month, day, year)) {
       System.out.print("That's not a real date?");
       System.exit(0);
-    self.month = month;
-    self.day = day;
-    self.year = year;
+    }
+    this.month = month;
+    this.day = day;
+    this.year = year;
   }
 
   /** Constructs a Date object corresponding to the given string.
@@ -53,41 +34,34 @@ class Date {
    *  between 1 and 4 digits.  If s does not match these requirements or is not
    *  a valid date, the program halts with an error message.
    */
-  public Date(String s) {
-    temporus ArrayList;
-    temporus = ArrayList(String.split("/"))
-    if (length(temporus.get(2)) > 4) {
+    public Date(String s) {
+    String[] temporus;
+    Integer[] vacillus = new Integer[3];
+    temporus = s.split("/");
+    if (temporus[2].length() > 4) {
       System.out.print("Dude that's not a year we've made it to yet");
       System.exit(0);
     }
-    try {
-      temporus.set(0, Integer(temporus.get(0));
-      temporus.set(1, Integer(temporus.get(1));
-      temporus.set(2, Integer(temporus.get(2));
-      if (not Date.isValidDate(temporus.get(0), temporus.get(1), temporus.get(2))) {
-        System.out.print("That's not a real date?");
-        System.exit(0)
-      }
-      else {
-        return Date(temporus.get(0), temporus.get(1), temporus.get(2));
-      }
-    } catch {
-      System.out.print("Bad literals man.");
+    vacillus[0] = Integer.parseInt(temporus[0]);
+    vacillus[1] = Integer.parseInt(temporus[1]);
+    vacillus[2] = Integer.parseInt(temporus[2]);
+    if (!Date.isValidDate(vacillus[0], vacillus[1], vacillus[2])) {
+      System.out.print("That's not a real date?");
       System.exit(0);
+    }
+    else {
+      new Date(vacillus[0], vacillus[1], vacillus[2]);
+    }
   }
-}
-
   /** Checks whether the given year is a leap year.
    *  @return true if and only if the input year is a leap year.
    */
   public static boolean isLeapYear(int year) {
     if (year % 400 == 0) {
       return true;
-    }
-    else if ((year % 4 == 0) && (year 100 != 0)) {
+    } else if ((year % 4 == 0) && (year % 100 != 0)) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -102,7 +76,7 @@ class Date {
       return 29;
     }
     else {
-      return months_to_days.get(month - 1);
+      return Date.month_to_days.get(month - 1);
     }
   }
 
@@ -133,11 +107,11 @@ class Date {
    *  @return true if and only if this Date is before d. 
    */
   public boolean isBefore(Date d) {
-    if (self.year < d.year){
+    if (this.year < d.year){
       return true;
-    } else if ((self.year == d.year) && (self.month < d.month)) {
+    } else if ((this.year == d.year) && (this.month < d.month)) {
       return true;
-    } else if ((self.year == d.year) && (self.month == d.month) && (self.day < d.day)) {
+    } else if ((this.year == d.year) && (this.month == d.month) && (this.day < d.day)) {
       return true;
     } else {
       return false;
@@ -163,9 +137,10 @@ class Date {
   public int dayInYear() {
     int acc = 0;
     for (int i = 0; i < (this.month - 1); i++) {
-      acc = acc + month_to_days.get(i);
+      acc = acc + Date.month_to_days.get(i);
     }
-    return (acc + this.days)
+    acc = acc + this.day;
+    return acc;
   }
 
   /** Determines the difference in days between d and this Date.  For example,
@@ -174,7 +149,7 @@ class Date {
    *  @return the difference in days between d and this date.
    */
   public int difference(Date d) {
-    return true;                           // replace this line with your solution
+    return 0;                           // replace this line with your solution
   }
 //END MY CODE
   public static void main(String[] argv) {
@@ -197,7 +172,6 @@ class Date {
 
     Date d4 = new Date("2/27/1977");
     Date d5 = new Date("8/31/2110");
-
     /* I recommend you write code to test the isLeapYear function! */
 
     System.out.println("\nTesting before and after.");
