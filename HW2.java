@@ -34,7 +34,7 @@ class Date {
    *  between 1 and 4 digits.  If s does not match these requirements or is not
    *  a valid date, the program halts with an error message.
    */
-    public Date(String s) {
+  public Date(String s) {
     String[] temporus;
     Integer[] vacillus = new Integer[3];
     temporus = s.split("/");
@@ -48,9 +48,10 @@ class Date {
     if (!Date.isValidDate(vacillus[0], vacillus[1], vacillus[2])) {
       System.out.print("That's not a real date?");
       System.exit(0);
-    }
-    else {
-      new Date(vacillus[0], vacillus[1], vacillus[2]);
+    } else {
+      this.month = vacillus[0];
+      this.day = vacillus[1];
+      this.year =  vacillus[2];
     }
   }
   /** Checks whether the given year is a leap year.
@@ -86,7 +87,7 @@ class Date {
    *  Years prior to A.D. 1 are NOT valid.
    */
   public static boolean isValidDate(int month, int day, int year) {
-      if ((day <= daysInMonth(month, year)) && (year > 1)) {
+      if ((day <= daysInMonth(month, year)) && (year >= 1) && (month>=1) && (day >= 1)) {
       return true;
     }
     else {
@@ -109,9 +110,9 @@ class Date {
   public boolean isBefore(Date d) {
     if (this.year < d.year){
       return true;
-    } else if ((this.year == d.year) && (this.month < d.month)) {
+    } else if ((this.year <= d.year) && (this.month < d.month)) {
       return true;
-    } else if ((this.year == d.year) && (this.month == d.month) && (this.day < d.day)) {
+    } else if ((this.day < d.day) && ((this.year <= d.year) && (this.month <= d.month))) {
       return true;
     } else {
       return false;
@@ -148,8 +149,27 @@ class Date {
    *  If this Date occurs before d, the result is negative.
    *  @return the difference in days between d and this date.
    */
+
+  private static int daysInYear(Integer year) {
+    if (Date.isLeapYear(year)) {
+      return 366;
+    }
+    return 365;
+  }
   public int difference(Date d) {
-    return 0;                           // replace this line with your solution
+    if (this == d) {
+	return 0;
+    }else  if (this.isAfter(d)) {
+      return d.difference(this);
+    } else {
+      Integer i, acc;
+      acc = 0;
+      for (i = this.year - d.year; i>0; i--){
+	acc = acc + Date.daysInYear(this.year + i);
+      }
+      acc = acc + d.dayInYear();
+      return acc;
+    }
   }
 //END MY CODE
   public static void main(String[] argv) {
