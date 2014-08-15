@@ -137,6 +137,10 @@ class Date {
    */
   public int dayInYear() {
     int acc = 0;
+    if (Date.isLeapYear(this.year)) {
+	Date prev = new Date(this.month, this.day, this.year - 1);
+        return prev.dayInYear() -1;
+    }
     for (int i = 0; i < (this.month - 1); i++) {
       acc = acc + Date.month_to_days.get(i);
     }
@@ -159,15 +163,15 @@ class Date {
   public int difference(Date d) {
     if (this == d) {
 	return 0;
-    }else  if (this.isAfter(d)) {
-      return d.difference(this);
+    }else  if (this.isBefore(d)) {
+      return -d.difference(this);
     } else {
       Integer i, acc;
       acc = 0;
-      for (i = this.year - d.year; i>0; i--){
-	acc = acc + Date.daysInYear(this.year + i);
+      for (i = this.year - d.year; i>0; --i) {
+	acc = acc + Date.daysInYear(d.year + i);
       }
-      acc = acc + d.dayInYear();
+      acc = acc + this.dayInYear() - d.dayInYear();
       return acc;
     }
   }
@@ -216,6 +220,13 @@ class Date {
                        d2.isBefore(d1));
     System.out.println(d3 + " before " + d2 + " should be false: " + 
                        d3.isBefore(d2));
+
+    System.out.println("\nTesting days in year.");
+    System.out.println("Should be" + d1.dayInYear());
+    System.out.println("Should be" + d2.dayInYear());
+    System.out.println("Should be" + d3.dayInYear());
+    System.out.println("Should be" + d4.dayInYear());
+    System.out.println("Should be" + d5.dayInYear());
 
     System.out.println("\nTesting difference.");
     System.out.println(d1 + " - " + d1  + " should be 0: " + 
