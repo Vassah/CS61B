@@ -115,12 +115,10 @@ public class SList {
     if (this.head == null) {
     } else {
       while (examinee != null) {
-        System.out.println(currentNode.item);
-        System.out.println(examinee.item);
         if (currentNode.equals(examinee)) {
           examinee = examinee.next;
         } else {
-          currentNode.next = examinee;
+          currentNode.next = new SListNode(examinee.item, examinee.next);
           currentNode = currentNode.next;
         }
       }
@@ -141,6 +139,12 @@ public class SList {
   public void twin() {
     // Fill in your solution here.  (Ours is seven lines long.)
     SListNode currentNode = this.head;
+    SListNode examinee = currentNode.next;
+    while (examinee != null) {
+    	currentNode.next = new SListNode(currentNode.item, examinee);
+    	currentNode = examinee;
+    	examinee = examinee.next;
+    }
   }
 
   /**
